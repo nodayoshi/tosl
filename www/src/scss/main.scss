@@ -1,0 +1,28 @@
+@import "@/scss/_reset.scss";
+@import "@/scss/_elements.scss";
+
+html,
+body {
+    font-size: 16px;
+    font-size-adjust: 0.5;
+    font-feature-settings: "palt";
+}
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family: $primary-font-family;
+    color: $primary-font-color;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+p,
+li,
+dl {
+    letter-spacing: 0.03rem;
+}

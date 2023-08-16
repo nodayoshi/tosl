@@ -1,0 +1,41 @@
+{
+  "name": "tosn01-www",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "vite --mode localtest --port 3000 --host localhost",
+    "build": "vite build --mode localtest",
+    "build-pro": "vite build --mode production",
+    "deploy": "npm run build-pro && firebase deploy --only hosting",
+    "deploy-preview": "npm run build-pro && firebase hosting:channel:deploy test",
+    "deploy-from-preview": "firebase hosting:clone tosn-01:test tosn-01:live"
+  },
+  "dependencies": {
+    "@vitejs/plugin-legacy": "^4.1.1",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "@vue/compiler-sfc": "^3.3.4",
+    "@vuepic/vue-datepicker": "^5.4.0",
+    "axios": "^1.4.0",
+    "date-fns": "^2.30.0",
+    "dayjs": "^1.11.9",
+    "firebase": "^10.1.0",
+    "lodash": "^4.17.21",
+    "rollup-plugin-visualizer": "^5.9.2",
+    "sass-loader": "^13.3.0",
+    "secure-ls": "^1.2.6",
+    "unique-names-generator": "^4.7.1",
+    "vite": "^4.4.9",
+    "vite-plugin-pwa": "^0.16.4",
+    "vue": "^3.3.0",
+    "vue-google-charts": "^1.1.0",
+    "vue-i18n": "^9.2.2",
+    "vue-router": "^4.2.0",
+    "vue-simple-acl": "^1.2.0",
+    "vuex": "^4.0.2",
+    "vuex-persistedstate": "^4.1.0"
+  },
+  "devDependencies": {
+    "sass": "^1.64.0",
+    "vite-plugin-mkcert": "^1.16.0",
+    "vite-svg-loader": "^4.0.0"
+  }
+}

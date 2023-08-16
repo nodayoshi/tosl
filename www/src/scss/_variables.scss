@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap");
+$primary-font-family: "Zen Kaku Gothic New", "Avenir Next", Arial, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
+  "游ゴシック", "Yu Gothic", "メイリオ", Meiryo, Osaka, sans-serif;
+
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@100;200;300;400;500;600;700;800;900&display=swap");
+$lexend-exa-family: "Lexend Exa", sans-serif;
+
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Zetta:wght@100;200;300;400;500;600;700;800;900&display=swap");
+$lexend-zetta-family: "Lexend Zetta", sans-serif;
+
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Peta:wght@100;200;300;400;500;600;700;800;900&display=swap");
+$lexend-peta-family: "Lexend Peta", sans-serif;
+
+@import url("https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;500;600;700;900&display=swap");
+$mincho-family: "Zen Old Mincho", "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", 游明朝, "Yu Mincho", 游明朝体, YuMincho,
+  "ＭＳ Ｐ明朝", "MS PMincho", serif;
+
+$condensed-family: "Avenir Next Condensed", "Bahnschrift", Arial, Verdana, "M PLUS Rounded 1c", "ヒラギノ角ゴ Pro W3",
+  "Hiragino Kaku Gothic Pro", "游ゴシック", "Yu Gothic", "メイリオ", Meiryo, Osaka, sans-serif;
+
+$primary-font-size: 1rem;
+$primary-font-color: #fff;
+$txtXXXL: calc(#{$primary-font-size} + 5.5rem);
+$txtXXL: calc(#{$primary-font-size} + 3.5rem);
+$txtXL: calc(#{$primary-font-size} + 2.5rem);
+$txtLLLL: calc(#{$primary-font-size} + 1.5rem);
+$txtLLL: calc(#{$primary-font-size} + 1.1rem);
+$txtLL: calc(#{$primary-font-size} + 0.75rem);
+$txtL: calc(#{$primary-font-size} + 0.5rem);
+$txtMM: calc(#{$primary-font-size} + 0.25rem);
+$txtM: calc(#{$primary-font-size} + 0.15rem);
+$txt: $primary-font-size;
+$txtS: calc(#{$primary-font-size} - 0.07rem);
+$txtSS: calc(#{$primary-font-size} - 0.125rem);
+$txtSSS: calc(#{$primary-font-size} - 0.17rem);
+$txtSSSS: calc(#{$primary-font-size} - 0.22rem);
+$txtSSSSS: calc(#{$primary-font-size} - 0.4rem);
+
+$color-bggy1: #fafafa;
+$color-bggy2: #f0f0f0;
+$color-bggy3: #eaeaea;
+$color-bggy4: #e0e0e0;
+$color-bggy5: #cfcfcf;
+$color-bggy6: #bebebe;
+$color-bggy7: #828282;
+$color-bggy8: #434343;
+$color-bggy9: #373737;
+$color-bggy10: #2f2f2f;
+$color-bggy11: #1f1f1f;
+$color-primary1: #06407b;
+$color-primary2: #0367b1;
+$color-primary3: #5ba2d6;
+$color-notice1: #b99061;
+$color-notice2: #f4cc64;
+$color-notice3: #fde6a7;
+$color-warning1: #b00000;
+$color-warning2: #f29090;
+$color-warning3: #ffd0d0;
+
+$color-bk: #000000;
+$color-wh: #ffffff;
+$color-gy1: #f5f5f5;
+$color-gy2: #dbdbdb;
+$color-gy3: #bebebe;
+$color-gy4: #828282;
+$color-gy5: #434343;
+$color-gy6: #373737;
+
+$color-submit: #ffef2c;
+$color-submit-hover: #051f2d;
+
+// Media Query
+$screen-s-min: 736px;
+@mixin smartphone {
+  @media (max-width: #{$screen-s-min}) {
+    @content;
+  }
+}
+@mixin pc {
+  @media (min-width: #{$screen-s-min+1}) {
+    @content;
+  }
+}

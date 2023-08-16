@@ -9,7 +9,10 @@ firebase-debug.*.log*
 
 # Firebase cache
 .firebase/
-
+data/*
+firebase-export-*
+www/dev-dist
+dist/
 # Firebase config
 
 # Uncomment this if you'd like others to create their own Firebase project.
