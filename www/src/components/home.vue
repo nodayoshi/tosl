@@ -12,10 +12,11 @@ import {
   onMounted,
   withDefaults,
 } from "vue";
+const store = useStore();
 
 let show = ref(false)
 let artist_detail_index = ref(0)
-let artists = reactive(
+let artists_detail = reactive(
   [
     {
       text: '',
@@ -70,29 +71,21 @@ let artists = reactive(
 )
 
 import Instagram from '@/assets/i_instagram.svg?component'
-const store = useStore();
 
 function showArtist(i) {
   artist_detail_index.value = artist_detail_index.value != i ? i : 0;
+  if (artist_detail_index.value != 0) {
+    let activeElm = document.getElementsByClassName('artist' + i)
+    console.log(activeElm)
+    if (window.scrollY != activeElm[0].offsetTop) {
+      window.scrollTo({
+        top: activeElm[0].offsetTop,
+        behavior: 'smooth'
+      })
+    }
+  }
 }
 
-const artist1 = ref()
-const artist2 = ref()
-const artist3 = ref()
-const artist4 = ref()
-const artist5 = ref()
-const artist6 = ref()
-
-function scrollElement(refName) {
-  console.log('scrollElement', eval(refName).value)
-  // if(window.scrollY >= 560) {
-
-  //     window.scrollTo({
-  //       top: 0,
-  //     behavior:'smooth'
-  //   })
-  // }
-}
 onMounted(() => {
   const sections = document.querySelectorAll('section')
   const options = {
@@ -131,16 +124,15 @@ onMounted(() => {
         <p class="pt_05 txtLLL"><span class="txtM">[LIVE]:</span> 19:00-21:00</p>
       </div>
     </section>
-    <section id="artists" class="bg_gy2">
+    <section id="artists" class="bg_gy2" ref="artists">
       <div class="t_center py_3">
-        <div v-for="(artist, i) in artists" :class="{ 'active': artist_detail_index == i }" :ref="'artist' + i"
+        <div v-for="(artist, i) in artists_detail" :class="{ 'active': artist_detail_index == i, ['artist' + i]: i }"
           :key="'artist' + i">
-          <h3 v-if="!!artist.name" class="color_bk bold v_center" @click="showArtist(i), scrollElement('artist' + i)">{{
+          <h3 v-if="!!artist.name" class="color_bk bold v_center" @click="showArtist(i)">{{
             artist.name }}<span class="from">{{ artist.sub_name }}</span></h3>
 
           <aside class="artist_detail" @click="showArtist(0)" v-if="!!artist.text"
             :style="{ backgroundImage: 'url(' + artist.bg + ')', backgroundPosition: artist.position }">
-            <div class="filter"></div>
             <a :href="artist.sns_link" target="_blank">
               <p class="color_wh">{{ artist.sns }}</p>
             </a>
@@ -240,7 +232,8 @@ section {
     display: block;
     background-repeat: no-repeat;
     background-size: cover;
-    backdrop-filter: blur(2px);
+    filter: grayscale(50%);
+
 
     p,
     a {
@@ -272,14 +265,14 @@ section {
       top: 0;
       padding: 5vh 0;
 
-      .filter {
+      &:before {
         position: absolute;
-        z-index: -1;
         top: 0;
-        background: rgb(0, 0, 0, 0.5);
-        width: 100%;
+        content: "";
+        display: block;
         height: 100%;
-        min-height: 800px;
+        width: 100%;
+        background: rgb(0, 0, 0, 0.2);
       }
 
       p,
@@ -351,7 +344,7 @@ section {
       }
 
       .artist_detail {
-        background-attachment: fixed;
+        background-attachment: unset;
       }
     }
   }

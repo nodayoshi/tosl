@@ -19,8 +19,6 @@ const i18n = createI18n({
   },
 });
 
-console.log(i18n);
-
 dayjs.locale("ja");
 const app = createApp(App).use(router).use(store).use(i18n).provide("dayjs", dayjs);
 app.mount("#app");
