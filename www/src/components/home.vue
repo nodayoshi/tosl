@@ -1,5 +1,4 @@
 <script setup>
-
 import { useStore } from "vuex";
 import {
   defineComponent,
@@ -12,6 +11,51 @@ import {
   onMounted,
   withDefaults,
 } from "vue";
+
+import { useParallax, useWindowSize, useWindowScroll } from '@vueuse/core'
+//import { vScrollAnimationClass } from '@/directives/scrollAnimationClass';
+const mainTarget = ref(null)
+const parallax = reactive(useParallax(mainTarget))
+const winSize = reactive(useWindowSize())
+const scrollPos = reactive(useWindowScroll())
+const layerBase = {
+  position: 'absolute',
+  transition: '.3s ease-out all',
+}
+const layer0 = computed(() => ({
+  ...layerBase,
+  textAlign: 'center',
+  height: '100%',
+  width: '100%',
+  top: '25%',
+  transform: `translateX(${parallax.tilt * 20}px) translateY(${((scrollPos.y / winSize.height) * 100)}px)`,
+}))
+
+// const layer1 = computed(() => ({
+//   ...layerBase,
+//   top: '55%',
+//   opacity: '0.8',
+//   width: "20%",
+//   textAlign: "right",
+//   transform: `translateX(${parallax.tilt * 30}px) translateY(${((scrollPos.y * -5 / winSize.height) * 100)}px) scale(1.33)`,
+// }))
+
+// const layer2 = computed(() => ({
+//   ...layerBase,
+//   top: '65%',
+//   opacity: '0.8',
+//   width: "80%",
+//   textAlign: "right",
+//   transform: `translateX(${parallax.tilt * 40}px) translateY(${((scrollPos.y * -7 / winSize.height) * 100)}px) scale(1.33)`,
+// }))
+
+// const layer3 = computed(() => ({
+//   ...layerBase,
+//   top: '45%',
+//   opacity: '0.8',
+//   transform: `translateX(${parallax.tilt * 50}px) translateY(${((scrollPos.y * -12 / winSize.height) * 100)}px) scale(1.33)`,
+// }))
+
 const store = useStore();
 
 let show = ref(false)
@@ -107,13 +151,19 @@ onMounted(() => {
 </script>
 
 <template>
-  <article id="home">
-    <section id="hero" class="box100 intersection">
-      <div class="box_center p_2">
+  <article id="home" ref="mainTarget">
+    <section id="hero" ref="baseTarget" class="box100 show">
+      <div class="layout-default_main" :style="layer0">
         <h2 class="lexend-exa top_title">TEMPLE OF SOUND NAGOYA</h2>
       </div>
+      <!-- <div class="layout-default_bg1" :style="layer1">
+        <h2 class="lexend-exa lhm">JAZZ,<br>FUNK &<br>FUTURE<br>SOUND</h2>
+      </div>
+      <div class="layout-default_bg2" :style="layer2">
+        <h2 class="lexend-exa lhm">& NIGHT<br>MARKET</h2>
+      </div> -->
     </section>
-    <section id="schedule" class="box100 bg001 intersection">
+    <section id="schedule" class="box100 bg001">
       <div class="box_center">
         <!-- <p class="mincho pb_4">イギリスの教会をライブ会場としツアーを行ってきたGhost In The Tapes。日本ではお寺を舞台としライブを行う。それがTemple Of
           Sound。名古屋ゆかりのアーティストを迎え名古屋は真宗大谷派東別院にて開催！
@@ -178,6 +228,23 @@ section {
   100% {
     opacity: 1;
   }
+}
+
+#hero {
+  position: relative;
+  display: block;
+  height: 800px;
+}
+
+.layout-default {
+
+  &_main {
+    position: relative;
+    height: 800px;
+    z-index: 4;
+    transition: scale(1.33);
+  }
+
 }
 
 .box100 {
@@ -325,7 +392,6 @@ section {
     &:not(.active) {
       h3 {
         font-size: $txtXXL;
-        transform: translateY(0px) scale(1);
 
         .from {
           font-size: $txtL;

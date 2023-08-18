@@ -168,6 +168,16 @@
   font-style: italic;
 }
 
+.lhs {
+  line-height: calc($primary-font-size * 1.4);
+}
+.lhm {
+  line-height: calc($primary-font-size * 1.8);
+}
+.lhl {
+  line-height: calc($primary-font-size * 2.2);
+}
+
 .color_gy1 {
   color: $color-gy1;
 }

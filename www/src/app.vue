@@ -17,36 +17,7 @@ const route = useRoute()
   main {
     padding: 0;
     margin: 0;
-  }
-}
-
-.main-enter-active,
-.main-leave-active {
-  animation: main-in .8s infinite linear;
-}
-
-.main-enter,
-.main-leave-to {
-  animation: main-out .5s infinite linear;
-}
-
-@keyframes main-in {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes main-out {
-  0% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
+    overflow: hidden;
   }
 }
 </style>
