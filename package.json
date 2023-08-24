@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "kill": "lsof -ti:8085 | xargs kill -9 & lsof -ti:8880 | xargs kill -9 & lsof -ti:9999 | xargs kill -9 & lsof -ti:9005 | xargs kill -9",
-    "dev": "firebase emulators:start --import=./data --export-on-exit",
+    "dev": "firebase emulators:start",
     "dev2": "firebase emulators:start --import=./data --export-on-exit --only firestore,hosting,pubsub",
     "emu": "firebase emulators:start --import=./data && firebase serve --host 0.0.0.0",
     "deploy-dev": "firebase firestore:indexes > firestore.indexes.json && cd www && npm run build-dev && firebase deploy",

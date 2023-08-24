@@ -127,6 +127,24 @@ let artists_detail = reactive(
       text: '愛知県出身22歳のシンガーソングライター2023年1月より本格的に活動を始め、現在5曲のシングルをデジタルリリース作詞作曲からMV、ジャケットのアートワークまで自身でプロデュースしている',
       bg: "/images/ag_nanoha.jpg",
       position: '50% 35%'
+    },
+    {
+      name: 'TSUBAKI fm NAGOYA presents',
+      sub_name: '',
+      sns: '@tsubaki.fm',
+      sns_link: 'https://www.instagram.com/tsubaki.fm/#',
+      text: 'インディペンデントミュージックを発信する新しい音楽プラットフォーム 「TSUBAKI FM」。世界中から集まるクオリティの高いアーティストやリスナーをキュレーションしながら日本のシーンに対して新しい風を送ります。様々なカルチャーや多彩な音楽、そしてライヴブロードキャストを中心に東京・京都・名古屋・広島・金沢など各都市から配信。今回の Temple of Sound では、TSUBAKI FM NAGOYAのメンバー AGO、MUSICMAN、Sammy the RIOT、S.O.N.E に Imaizumi を加えてのDJプレイを披露。',
+      bg: "",
+      position: 'center'
+    },
+    {
+      name: 'UOU',
+      sub_name: '- Lighting',
+      sns: 'uoukzo.com',
+      sns_link: 'https://www.uoukzo.com',
+      text: 'UOU（ワオ）とは、英語で言う「WOW」と同じ意味を持つ同義語。目に入った瞬間にワオ！と驚いてもらえるような空間造りの意味を込めています。静的な美しさ・動的な躍動感を森の中エネルギッシュなダンスフロア屋内外でのビジュアル広告様々な催事で、多様な環境に応じて視覚空間を変化させ心踊るLive演出をしつらひ彩ります。',
+      bg: "/images/ag_uou.jpg",
+      position: 'center'
     }
   ]
 )
@@ -188,7 +206,7 @@ onMounted(() => {
         <p class="align_center txtLLL">2023-9-18(月) 15:00-</p>
         <p>− 真宗大谷派名古屋別院(東別院)</p>
         <p class="pt_5 txtLLL"><span class="txtM">[夜市]:</span> 15:00-20:00</p>
-        <p class="pt_05 txtLLL"><span class="txtM">[LIVE]:</span> 19:00-21:00</p>
+        <p class="pt_05 txtLLL"><span class="txtM">[LIVE]:</span> 17:00-21:00</p>
       </div>
     </section>
     <section id="artists" class="bg_gy2" ref="artists">

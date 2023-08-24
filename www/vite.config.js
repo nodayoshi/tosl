@@ -7,6 +7,8 @@ import { visualizer } from "rollup-plugin-visualizer";
 import svgLoader from "vite-svg-loader";
 import { VitePWA } from "vite-plugin-pwa";
 
+const hash = Math.floor(Math.random() * 90000) + 10000;
+
 const pwaOptions = {
   manifest: {
     name: "Temple of Sound Nagoya",
@@ -63,6 +65,13 @@ export default defineConfig(({ mode }) => {
     },
     build: {
       chunkSizeWarningLimit: 1000,
+      rollupOptions: {
+        output: {
+          entryFileNames: `[name]` + hash + `.js`,
+          chunkFileNames: `[name]` + hash + `.js`,
+          assetFileNames: `[name]` + hash + `.[ext]`,
+        },
+      },
     },
     plugins: [
       vue(),
