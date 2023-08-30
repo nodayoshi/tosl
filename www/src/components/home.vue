@@ -13,7 +13,10 @@ import {
 } from "vue";
 
 import { useParallax, useWindowSize, useWindowScroll } from '@vueuse/core'
-//import { vScrollAnimationClass } from '@/directives/scrollAnimationClass';
+import firestore from "@/firebase/firestore/query";
+
+const FS = new firestore()
+const pages = ref(null)
 const mainTarget = ref(null)
 const parallax = reactive(useParallax(mainTarget))
 const winSize = reactive(useWindowSize())
@@ -24,37 +27,18 @@ const layerBase = {
 }
 const layer0 = computed(() => ({
   ...layerBase,
-  textAlign: 'center',
-  height: '100%',
-  width: '100%',
-  top: '9%',
-  transform: `translateX(${parallax.tilt * 20}px) translateY(${((scrollPos.y / winSize.height) * 100)}px)`,
+  transform: `translateY(${((scrollPos.y / winSize.height) * -300)}px)`,
 }))
 
-// const layer1 = computed(() => ({
-//   ...layerBase,
-//   top: '55%',
-//   opacity: '0.8',
-//   width: "20%",
-//   textAlign: "right",
-//   transform: `translateX(${parallax.tilt * 30}px) translateY(${((scrollPos.y * -5 / winSize.height) * 100)}px) scale(1.33)`,
-// }))
+const layer1 = computed(() => ({
+  ...layerBase,
+  transform: `translateY(${((scrollPos.y / winSize.height) * -170)}px)`,
+}))
 
-// const layer2 = computed(() => ({
-//   ...layerBase,
-//   top: '65%',
-//   opacity: '0.8',
-//   width: "80%",
-//   textAlign: "right",
-//   transform: `translateX(${parallax.tilt * 40}px) translateY(${((scrollPos.y * -7 / winSize.height) * 100)}px) scale(1.33)`,
-// }))
-
-// const layer3 = computed(() => ({
-//   ...layerBase,
-//   top: '45%',
-//   opacity: '0.8',
-//   transform: `translateX(${parallax.tilt * 50}px) translateY(${((scrollPos.y * -12 / winSize.height) * 100)}px) scale(1.33)`,
-// }))
+const layer2 = computed(() => ({
+  ...layerBase,
+  transform: `translateY(${((scrollPos.y / winSize.height) * 100)}px)`,
+}))
 
 const store = useStore();
 
@@ -164,8 +148,9 @@ function showArtist(i) {
   }
 }
 
-onMounted(() => {
+onMounted(async () => {
   const sections = document.querySelectorAll('section')
+  const discriptions = document.querySelectorAll('p')
   const options = {
     threshold: 0.4
   }
@@ -177,9 +162,20 @@ onMounted(() => {
       }
     })
   }, options)
+  //console.log(sections)
   sections.forEach(section => {
+    //console.log(section)
     observer.observe(section)
   })
+
+  //console.log(discriptions)
+  discriptions.forEach(discription => {
+    //console.log(discription)
+    observer.observe(discription)
+  })
+
+  //firestoreから取得
+  pages.value = await FS.setCollectionPath('pages').getAll().then((result) => result)
 })
 
 </script>
@@ -187,9 +183,10 @@ onMounted(() => {
 <template>
   <article id="home" ref="mainTarget">
     <section id="hero" ref="baseTarget" class="box100 show">
-      <div class="layout-default_main" :style="layer0">
-        <h2 class="lexend-exa top_title">TEMPLE<br>OF<br>SOUND</h2>
-        <h2 class="mincho top_title2">東別院</h2>
+      <div class="layout-default_main">
+        <h2 class="lexend-peta top_title" :style="layer0">TEMPLE<br>OF<br>SOUND</h2>
+        <h2 class="mincho top_title2" :style="layer1">東別院</h2>
+        <p class="discription t_left" :style="layer2" v-if="pages">{{ pages[0].discription }}</p>
       </div>
       <!-- <div class="layout-default_bg1" :style="layer1">
         <h2 class="lexend-exa lhm">JAZZ,<br>FUNK &<br>FUTURE<br>SOUND</h2>
@@ -205,7 +202,7 @@ onMounted(() => {
         </p> -->
         <p class="align_center txtLLL">2023-9-18(月) 15:00-</p>
         <p>− 真宗大谷派名古屋別院(東別院)</p>
-        <p class="pt_5 txtLLL"><span class="txtM">[夜市]:</span> 15:00-20:00</p>
+        <p class="pt_5 txtLLL"><span class="txtM">[夜市]:</span> 16:00-20:00</p>
         <p class="pt_05 txtLLL"><span class="txtM">[LIVE]:</span> 17:00-21:00</p>
       </div>
     </section>
@@ -286,12 +283,26 @@ section {
 }
 
 .top_title {
-  font-size: 2.8em;
+  width: fit-content;
+  display: block;
+  position: absolute;
 }
 
 .top_title2 {
-  font-size: 4.2em;
+  width: fit-content;
+  display: block;
+  position: absolute;
 }
+
+.discription {
+  width: '100%';
+
+  &.show {
+    opacity: 1;
+    animation: all-in 0.5s;
+  }
+}
+
 
 .bg001 {
   min-height: 110vh;
@@ -405,6 +416,26 @@ section {
 
 @include pc {
 
+  .top_title {
+    top: 18%;
+    left: 10%;
+    font-size: 3.6em;
+  }
+
+  .top_title2 {
+    top: 20%;
+    left: 38%;
+    writing-mode: vertical-rl;
+    letter-spacing: 0.3em;
+    font-size: 4.2em;
+  }
+
+  .discription {
+    top: 53%;
+    padding: 0 10vw;
+    line-height: 2.2;
+  }
+
   #hero {
     background-size: cover;
     background-repeat: no-repeat;
@@ -447,10 +478,31 @@ section {
 
 @include smartphone {
 
+  .top_title {
+    top: 6%;
+    left: 10%;
+    font-size: 2.2em;
+  }
+
+  .top_title2 {
+    top: 7.8%;
+    right: 20%;
+    writing-mode: vertical-rl;
+    letter-spacing: 0.3em;
+    font-size: 2.2em;
+  }
+
+  .discription {
+    top: 25%;
+    padding: 0 10vw;
+    line-height: 1.8;
+  }
+
   #hero {
     background-size: contain;
     background-repeat: no-repeat;
-    height: 598px;
+    background-color: #000;
+    height: 1000px;
   }
 
   #artists {

@@ -1,5 +1,11 @@
 {
   "projects": {
     "default": "tosn-01"
+  },
+  "targets": {},
+  "etags": {
+    "tosn-01": {
+      "extensionInstances": {}
+    }
   }
 }

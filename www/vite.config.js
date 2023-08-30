@@ -16,17 +16,17 @@ const pwaOptions = {
     description: "イギリスのGhost In The Tapesを迎え、名古屋が誇るミュージシャンが名古屋の東別院で繋がる音楽祭「Temple Of Sound Nagoya」",
     icons: [
       {
-        src: "@/app_icons/icon-192.png",
+        src: "app_icons/196.png",
         sizes: "192x192",
         type: "image/png",
       },
       {
-        src: "@/app_icons/icon-512.png",
+        src: "app_icons/512.png",
         sizes: "512x512",
         type: "image/png",
       },
       {
-        src: "@/app_icons/icon-512.png",
+        src: "app_icons/512.png",
         sizes: "512x512",
         type: "image/png",
         purpose: "any maskable",
