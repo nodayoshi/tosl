@@ -202,7 +202,7 @@ onMounted(async () => {
         </p> -->
         <p class="align_center txtLLL">2023-9-18(月) 15:00-</p>
         <p>− 真宗大谷派名古屋別院(東別院)</p>
-        <p class="pt_5 txtLLL"><span class="txtM">[夜市]:</span> 16:00-20:00</p>
+        <p class="pt_5 txtLLL"><span class="txtM">[夜市]:</span> 16:00-21:00</p>
         <p class="pt_05 txtLLL"><span class="txtM">[LIVE]:</span> 17:00-21:00</p>
       </div>
     </section>
