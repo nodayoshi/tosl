@@ -5,7 +5,7 @@ import error from "@/components/error.vue";
 import not_found from "@/components/not_found.vue";
 import vuex from "@/store/index";
 
-const DEFAULT_TITLE = "Temple of Sound of Nagoya";
+const DEFAULT_TITLE = "Temple of Sound Nagoya";
 
 export const router = createRouter({
   mode: "hash",
@@ -17,7 +17,7 @@ export const router = createRouter({
       name: "home",
       component: home,
       meta: {
-        title: "Temple of Sound of Nagoya",
+        title: "東別院",
       },
     },
     {
