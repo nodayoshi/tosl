@@ -206,13 +206,13 @@ onMounted(async () => {
         <p class="pt_05 txtLLL"><span class="txtM">[LIVE]:</span> 17:00-21:00</p>
       </div>
     </section>
-    <section id="artists" class="bg_gy2" ref="artists">
+    <section id="artists" class="bg_gy2 show" ref="artists">
       <div class="t_center">
         <div v-for="(artist, i) in artists_detail" class="artist_name"
           :class="{ 'active': artist_detail_index == i, ['artist' + i]: i }" :key="'artist' + i"
           @mousedown="startDrag(item)">
           <h3 v-if="!!artist.name" class="color_bk bold v_center" @click="showArtist(i)">{{
-            artist.name }}<span class="from">{{ artist.sub_name }}</span></h3>
+            artist.name }}<br><span class="from">{{ artist.sub_name }}</span></h3>
 
           <aside class="artist_detail" @click="showArtist(0)" v-if="!!artist.text"
             :style="{ backgroundImage: 'url(' + artist.bg + ')', backgroundPosition: artist.position }">
@@ -221,6 +221,48 @@ onMounted(async () => {
             </a>
             <p class="color_wh m_2 t_left">{{ artist.text }}</p>
           </aside>
+        </div>
+      </div>
+    </section>
+    <section id="shops" class="gradient1 show">
+      <h2 class="txtXXL mincho t_center">夜市<br><span class="txtSS mincho">-入場無料-</span></h2>
+      <div class="food">
+        <h3 class="txtLLL py_05 mincho">Food</h3>
+        <div class="list">
+          <h3>BAR<br><span>(ビール•酒類)</span></h3>
+          <h3>mirume深緑茶房<br><span>(緑茶ドリンク)</span></h3>
+          <h3>喫茶マスカラス＆クレープまるや<br><span>(カレー•クレープ)</span></h3>
+          <h3>COFFEE,PLEASE & ICE CREAM<br><span>(コーヒー)</span></h3>
+          <h3>Callejera STAND/GARAGE<br><span>(タコス)</span></h3>
+          <h3>olive<br><span>(うどん)</span></h3>
+          <h3>LAST<br><span>(クラフトビール)</span></h3>
+          <h3>NIMROD COFFEE<br><span>(コーヒー)</span></h3>
+          <h3>株式会社フードマリフ<br><span>(牛串•フランク)</span></h3>
+          <h3>M＆M FOOD TRUCK<br><span>(カレー•フランク)</span></h3>
+          <h3>想いっきり沖縄<br><span>(餃子•フランク•ポーク串•ドリンク)</span></h3>
+          <h3>JIRRI<br><span>(牛串•ビビンバ•かき氷)</span></h3>
+          <h3>J’s vendor nagoya<br><span>(チキンオーバーライス)</span></h3>
+          <h3>Mr.POTATO<br><span>(ポテサラ•パニーニ•ポテトドック)</span></h3>
+          <h3>フレイトレシピ<br><span>(柑橘ドリンク)</span></h3>
+        </div>
+      </div>
+
+      <div class="goods">
+        <h3 class="txtLLL py_05 mincho">Goods</h3>
+        <div class="list">
+          <h3>駄菓子屋nicco<br><span>(駄菓子)</span></h3>
+          <h3>スペースたのしい<br><span>(玩具)</span></h3>
+          <h3>サイゴン2<br><span>(仏具)</span></h3>
+          <h3>牡丹〜dog dress〜<br><span>(犬用衣装)</span></h3>
+          <h3>オリジナル腕輪念珠づくり<br><span>(WS)</span></h3>
+          <h3>FRANKEN<br><span>(洋服)</span></h3>
+          <h3>extraissue＆ball＆chain<br><span>(洋服)</span></h3>
+          <h3>groovydays<br><span>(洋服)</span></h3>
+          <h3>the chord<br><span>(靴磨き)</span></h3>
+          <h3>opere<br><span>(家具)</span></h3>
+          <h3>greatest hits<br><span>(レコード)</span></h3>
+          <h3>roots lounge<br><span>(レコード)</span></h3>
+          <h3>DAISY MESSENGER<br><span>(自転車)</span></h3>
         </div>
       </div>
     </section>
@@ -253,6 +295,7 @@ section {
   display: block;
   background-image: url(/images/top.gif);
 }
+
 
 .layout-default {
 
@@ -322,7 +365,18 @@ section {
   align-items: center;
 }
 
+.gradient1 {
+  background-color: #ffaa99;
+  background-image:
+    radial-gradient(at 72% 60%, hsla(18, 66%, 76%, 1) 0px, transparent 50%),
+    radial-gradient(at 35% 69%, hsla(194, 76%, 75%, 1) 0px, transparent 50%),
+    radial-gradient(at 96% 89%, hsla(2, 77%, 70%, 1) 0px, transparent 50%),
+    radial-gradient(at 69% 91%, hsla(337, 86%, 63%, 1) 0px, transparent 50%);
+}
+
 #artists {
+  padding: 3rem 0;
+
   .artist_name {
     position: relative;
     z-index: 100;
@@ -348,6 +402,11 @@ section {
         left: -25%;
         transform: rotate(52deg);
       }
+    }
+
+    h3 {
+      line-height: 0.9;
+      margin: 2rem 0;
     }
   }
 
@@ -412,6 +471,36 @@ section {
   .from {
     margin-left: 0.7em;
   }
+
+}
+
+#shops {
+  padding: 4rem 0;
+  display: grid;
+  place-content: center;
+  place-items: center;
+  grid-gap: 2rem;
+  grid-template-columns: 1fr;
+  padding: 1rem;
+
+  .list {
+    h3 {
+      font-size: 2.2rem;
+      line-height: 1.2em;
+      margin-bottom: 0.5em;
+
+      span {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .food,
+  .goods {
+    display: grid;
+    place-content: center;
+    place-items: center;
+  }
 }
 
 @include pc {
@@ -451,7 +540,7 @@ section {
 
     &:not(.active) {
       h3 {
-        font-size: $txtXXL;
+        font-size: $txtXXXL;
 
         .from {
           font-size: $txtL;
@@ -508,7 +597,7 @@ section {
   #artists {
 
     h3 {
-      font-size: $txtL;
+      font-size: $txtXL;
 
       .from {
         font-size: $txtM;
@@ -518,6 +607,10 @@ section {
     .artist_detail {
       background-attachment: auto;
     }
+  }
+
+  #shops {
+    font-size: smaller;
   }
 }
 </style>
